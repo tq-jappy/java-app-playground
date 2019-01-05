@@ -1,13 +1,17 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'org.flywaydb.flyway' version '5.2.4'
 }
 
 apply plugin: 'java'
@@ -20,19 +24,24 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
-
 dependencies {
-	implementation('org.springframework.boot:spring-boot-starter-cache')
-	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-	implementation('org.springframework.boot:spring-boot-starter-data-redis')
-	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
-	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('org.flywaydb:flyway-core')
-	implementation('org.springframework.session:spring-session-data-redis')
-	runtimeOnly('mysql:mysql-connector-java')
-	compileOnly('org.projectlombok:lombok')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation('org.springframework.boot:spring-boot-starter-cache')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.flywaydb:flyway-core')
+    implementation('org.springframework.session:spring-session-data-redis')
+    compile('mysql:mysql-connector-java:5.1.47')
+    compileOnly('org.projectlombok:lombok')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+flyway {
+    url = 'jdbc:mysql://127.0.0.1:3306/test'
+    user = 'root'
+    password = 'root'
 }
