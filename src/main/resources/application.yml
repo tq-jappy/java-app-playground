@@ -2,6 +2,6 @@ spring:
   datasource:
     # MySQL 5.x を使うので com.mysql.cj.jdbc.Driver ではなく明示的に古いドライバを指定
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/test
+    url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false
     username: root
     password: root
