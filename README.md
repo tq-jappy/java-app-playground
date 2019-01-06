@@ -1,9 +1,14 @@
 # java-app-playground
 
-## setup
+## Setup
 
 ```
 $ docker-compose build
 $ docker-compose up -d
-$ docker-compose start
+```
+
+## CodeGen
+
+```
+$ ./gradlew generateMainJooqSchemaSource
 ```

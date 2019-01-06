@@ -12,6 +12,7 @@ buildscript {
 
 plugins {
     id 'org.flywaydb.flyway' version '5.2.4'
+    id 'nu.studer.jooq' version '3.0.2'
 }
 
 apply plugin: 'java'
@@ -33,10 +34,14 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
     implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-jooq')
     implementation('org.flywaydb:flyway-core')
     implementation('org.springframework.session:spring-session-data-redis')
     compile('mysql:mysql-connector-java:5.1.47')
     compileOnly('org.projectlombok:lombok')
+
+    jooqRuntime('mysql:mysql-connector-java:5.1.47')
+
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -44,4 +49,38 @@ flyway {
     url = 'jdbc:mysql://127.0.0.1:3306/test'
     user = 'root'
     password = 'root'
+}
+
+jooq {
+    main(sourceSets.main) {
+        jdbc {
+            url = 'jdbc:mysql://127.0.0.1:3306/test'
+            user = 'root'
+            password = 'root'
+        }
+        generator {
+            name = 'org.jooq.codegen.DefaultGenerator'
+            database {
+                name = 'org.jooq.meta.mysql.MySQLDatabase'
+                // inputSchema = 'public'
+            }
+            strategy {
+                name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                //name = 'my.strategy.FieldWithTableAsPrefixStrategy'
+            }
+            generate {
+                relations = false
+                deprecated = false
+                records = false
+                immutablePojos = false
+                fluentSetters = false
+                daos = false
+                jpaAnnotations = false
+            }
+            target {
+                packageName = 'aaa.bbb'
+                // directory = 'src/main/java'
+            }
+        }
+    }
 }
