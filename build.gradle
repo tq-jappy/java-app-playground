@@ -22,7 +22,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 8
 
 repositories {
     mavenCentral()
@@ -38,6 +38,8 @@ dependencies {
     implementation('org.flywaydb:flyway-core')
     implementation('org.springframework.session:spring-session-data-redis')
     compile('mysql:mysql-connector-java:5.1.47')
+
+    annotationProcessor('org.projectlombok:lombok')
     compileOnly('org.projectlombok:lombok')
 
     jooqRuntime('mysql:mysql-connector-java:5.1.47')
@@ -84,3 +86,6 @@ jooq {
         }
     }
 }
+
+// removes the task dependency from compileJava to generateMainJooqSchemaSource
+project.tasks.getByName('compileJava').dependsOn -= 'generateMainJooqSchemaSource'
