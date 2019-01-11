@@ -12,3 +12,11 @@ $ docker-compose up -d
 ```
 $ ./gradlew generateMainJooqSchemaSource
 ```
+
+## Debug
+
+MySQL
+
+```
+$ mysql -uroot -h127.0.0.1 --password=root test
+```

@@ -64,24 +64,18 @@ jooq {
             name = 'org.jooq.codegen.DefaultGenerator'
             database {
                 name = 'org.jooq.meta.mysql.MySQLDatabase'
-                // inputSchema = 'public'
+                includes = '.*'
+                excludes = 'flyway_schema_history'
+                inputSchema = 'test'
             }
             strategy {
                 name = 'org.jooq.codegen.DefaultGeneratorStrategy'
-                //name = 'my.strategy.FieldWithTableAsPrefixStrategy'
             }
             generate {
-                relations = false
-                deprecated = false
-                records = false
-                immutablePojos = false
-                fluentSetters = false
-                daos = false
-                jpaAnnotations = false
             }
             target {
-                packageName = 'aaa.bbb'
-                // directory = 'src/main/java'
+                packageName = 'com.example.demo.jooq'
+                directory = 'src/main/java'
             }
         }
     }
