@@ -7,3 +7,6 @@ spring:
     password: root
   jooq:
     sql-dialect: MySQL
+logging:
+  level:
+    org.jooq: DEBUG
