@@ -1,5 +1,9 @@
 # java-app-playground
 
+- Java 8
+- Spring Boot 2.1.1.RELEASE
+- JPA & JOOQ
+
 ## Setup
 
 ```
@@ -7,15 +11,28 @@ $ docker-compose build
 $ docker-compose up -d
 ```
 
-## CodeGen
+## Migration
+
+```
+$ ./gradlew flywayMigrate
+```
+
+## JOOQ CodeGen
 
 ```
 $ ./gradlew generateMainJooqSchemaSource
 ```
 
+## Start Application
+
+```
+$ ./gradlew bootRun
+$ open http://localhost:8080/
+```
+
 ## Debug
 
-MySQL
+### MySQL
 
 ```
 $ mysql -uroot -h127.0.0.1 --password=root test
