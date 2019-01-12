@@ -1,36 +1,31 @@
 package com.example.demo.controller;
 
 import com.example.demo.infra.item.Item;
-import com.example.demo.infra.item.ItemRepository;
 import com.example.demo.infra.item.ItemRepositoryJooq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RestController
-@RequestMapping("api/items")
+@RequestMapping("api/jooq/items")
 @RequiredArgsConstructor
-public class ItemController {
-
-    private final ItemRepository itemRepository;
+public class JooqItemsController {
 
     private final ItemRepositoryJooq itemRepositoryJooq;
 
-    @GetMapping("jpa")
+    @GetMapping()
     public List<Item> getItems() {
-        Iterable<Item> items = itemRepository.findAll();
-
-        return StreamSupport.stream(items.spliterator(), false)
-                .collect(Collectors.toList());
+        return itemRepositoryJooq.findAll();
     }
 
-    @GetMapping("jooq")
-    public List<Item> getItems2() {
-        return itemRepositoryJooq.findAll();
+    @GetMapping("{id}")
+    public Item getItemById(@PathVariable Integer id) {
+        return itemRepositoryJooq.findOne(id)
+                // TODO: use custom error handler
+                .orElseThrow(() -> new RuntimeException("Item not found"));
     }
 }
