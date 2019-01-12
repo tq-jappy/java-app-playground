@@ -22,7 +22,7 @@ public class ItemRepositoryJooq {
                 .fetchOneInto(Item.class);
         return Optional.ofNullable(item);
     }
-
+    
     public List<Item> findAll() {
         return create.selectFrom(ITEMS)
                 .limit(3)
@@ -33,5 +33,19 @@ public class ItemRepositoryJooq {
         ItemsRecord record = create.newRecord(ITEMS, item);
 
         return create.executeInsert(record);
+    }
+
+    public int createWithName(String name) {
+        return create.insertInto(ITEMS, ITEMS.NAME)
+                .values(name)
+                .execute();
+    }
+
+    public int merge(int id, String name) {
+        return create.insertInto(ITEMS, ITEMS.ID, ITEMS.NAME)
+                .values(id, name)
+                .onDuplicateKeyUpdate()
+                .set(ITEMS.NAME, name)
+                .execute();
     }
 }
