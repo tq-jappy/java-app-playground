@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - ./gradlew bootJar
+
+artifacts:
+  files:
+    - build/libs/*.jar
+
+cache:
+  paths:
+    - '/root/.gradle/**/*'

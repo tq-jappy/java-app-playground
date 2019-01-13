@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+#  install:
+#    commands:
+#      - service docker start
+#      - docker-compose up -d
+#  pre_build:
+#    commands:
+#      - ./gradlew flywayMigrate
+  build:
+    commands:
+      - ./gradlew build
+
+artifacts:
+  files:
+    - build/test-results/**/*
+
+cache:
+  paths:
+    - '/root/.gradle/**/*'
