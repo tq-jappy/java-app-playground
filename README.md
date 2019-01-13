@@ -1,6 +1,6 @@
 # java-app-playground
 
-- Java 8
+- Java 11
 - Spring Boot 2.1.1.RELEASE
 - JPA & JOOQ
 

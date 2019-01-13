@@ -7,6 +7,9 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+        // fot Java 11
+        classpath('org.glassfish.jaxb:jaxb-runtime:2.3.1')
     }
 }
 
@@ -22,7 +25,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 8
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
@@ -44,6 +47,9 @@ dependencies {
 
     jooqRuntime project(':custom-generator')
     jooqRuntime('org.mariadb.jdbc:mariadb-java-client')
+    // for Java 11
+    jooqRuntime('org.glassfish.jaxb:jaxb-runtime')
+    jooqRuntime('javax.activation:javax.activation-api')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
