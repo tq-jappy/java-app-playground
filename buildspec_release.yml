@@ -4,6 +4,8 @@ phases:
   build:
     commands:
       - ls -la /codebuild/output/tmp/
+      - ls -la
+      - cat /codebuild/output/tmp/script.sh
       - ./gradlew bootJar
 
 artifacts:
