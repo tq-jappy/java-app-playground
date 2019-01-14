@@ -62,6 +62,10 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
+bootJar {
+    archiveName = 'java-playground.jar'
+}
+
 flyway {
     url = 'jdbc:mysql://127.0.0.1:3306/test'
     user = 'root'

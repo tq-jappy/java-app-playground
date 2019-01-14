@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: java-playground.jar
+    destination: /home/apps
+permissions:
+  - object: /home/apps
+    pattern: "*.jar"
+    owner: root
+    group: root
+    mode: 755
+hooks:
+  ApplicationStop:
+    - location: scripts/stop.sh
+    - timeout: 60
+  ApplicationStart:
+    - location: scripts/start.sh
+    - timeout: 300
