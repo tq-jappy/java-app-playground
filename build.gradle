@@ -20,6 +20,7 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -60,6 +61,9 @@ dependencies {
     jooqRuntime('javax.activation:javax.activation-api')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    testImplementation('org.codehaus.groovy:groovy-all:2.4.12')
+    testImplementation('org.spockframework:spock-core:1.1-groovy-2.4-rc-2')
 }
 
 bootJar {
